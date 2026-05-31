@@ -33,6 +33,7 @@ BREW_PACKAGES=(
   kubectx
   go
   starship
+  rust
 )
 
 for pkg in "${BREW_PACKAGES[@]}"; do
@@ -94,7 +95,10 @@ info "Installing/upgrading Claude Code..."
 npm install -g @anthropic-ai/claude-code
 
 # ── 7. TPM (tmux plugin manager) ──────────────────────────────────────────────
-TPM_DIR="$HOME/.tmux/plugins/tpm"
+export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins/"
+mkdir -p "$TMUX_PLUGIN_MANAGER_PATH"
+
+TPM_DIR="$TMUX_PLUGIN_MANAGER_PATH/tpm"
 if [ ! -d "$TPM_DIR" ]; then
   info "Installing TPM..."
   git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
@@ -102,6 +106,7 @@ else
   info "Updating TPM..."
   git -C "$TPM_DIR" pull --quiet
 fi
+
 
 # ── 8. Symlinks ───────────────────────────────────────────────────────────────
 info "Creating symlinks..."
@@ -132,7 +137,6 @@ symlink "$DOTFILES/.gitconfig"                   "$HOME/.gitconfig"
 symlink "$DOTFILES/.gitignore_global"            "$HOME/.gitignore_global"
 symlink "$DOTFILES/.config/tmux/tmux.conf"       "$HOME/.config/tmux/tmux.conf"
 symlink "$DOTFILES/.config/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
-symlink "$DOTFILES/.claude/skills"               "$HOME/.claude/skills"
 symlink "$DOTFILES/.ssh/config"                  "$HOME/.ssh/config"
 symlink "$DOTFILES/.config/ghostty/config"          "$HOME/.config/ghostty/config"
 symlink "$DOTFILES/.config/ghostty/shaders"        "$HOME/.config/ghostty/shaders"
@@ -152,5 +156,7 @@ echo "  1. Open a new terminal to apply .zshrc"
 echo "  2. Create ~/.zshrc.secrets with your API tokens:"
 echo "     export ATLASSIAN_AUTH=..."
 echo "     export JIRA_API_TOKEN=..."
-echo "  3. Start tmux and press prefix + I to install tmux plugins"
+echo "  3. Start tmux and press prefix + I (Ctrl+A then I) to install plugins"
+echo "  4. After plugins install, build tmux-thumbs binary:"
+echo "     cargo build --release --manifest-path ~/.config/tmux/plugins/tmux-thumbs/Cargo.toml"
 echo "  4. Log out and back in to fully apply keyboard shortcuts"

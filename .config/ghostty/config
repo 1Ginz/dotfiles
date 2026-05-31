@@ -1,12 +1,12 @@
 # Theme — matches alacritty catppuccin_mocha.toml
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Font — matches alacritty
 font-family = JetBrainsMono Nerd Font
 font-size = 19
 
 # Background — matches alacritty opacity = 0.7, blur = true
-background-opacity = 0.7
+background-opacity = 0.3
 background-blur-radius = 20
 
 # Window — matches alacritty decorations = "Buttonless"

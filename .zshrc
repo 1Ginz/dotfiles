@@ -74,6 +74,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd z zsh)"
 eval "$(starship init zsh)"
 
+export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins/"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
