@@ -1,0 +1,8 @@
+.claude/
+openspec/
+.code-review-graph/
+.mina/
+.planning/
+base.config.local.yaml
+
+**/.claude/settings.local.json

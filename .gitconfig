@@ -1,0 +1,7 @@
+[user]
+	name = Ginz da poet
+	email = hunglq@tenxtenx.com
+[url "git@git.kafefin.net:"]
+	insteadOf = https://git.kafefin.net/
+[core]
+	excludesFile = ~/.gitignore_global

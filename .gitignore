@@ -1,0 +1,6 @@
+.DS_Store
+*.bak
+
+# override global gitignore — skills are intentionally tracked here
+!.claude/
+!.claude/**
