@@ -123,6 +123,7 @@ symlink "$DOTFILES/.gitignore_global"            "$HOME/.gitignore_global"
 symlink "$DOTFILES/.config/tmux/tmux.conf"       "$HOME/.config/tmux/tmux.conf"
 symlink "$DOTFILES/.config/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
 symlink "$DOTFILES/.claude/skills"               "$HOME/.claude/skills"
+symlink "$DOTFILES/.ssh/config"                  "$HOME/.ssh/config"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo ""

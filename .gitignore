@@ -1,6 +1,10 @@
 .DS_Store
 *.bak
 
+# SSH — only track config, never keys
+.ssh/*
+!.ssh/config
+
 # override global gitignore — skills are intentionally tracked here
 !.claude/
 !.claude/**
