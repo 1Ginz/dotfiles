@@ -31,6 +31,7 @@ BREW_PACKAGES=(
   tmux
   kubectl
   kubectx
+  awscli
   go
   starship
   rust
@@ -44,7 +45,15 @@ for pkg in "${BREW_PACKAGES[@]}"; do
   fi
 done
 
-# ── 3. Casks ──────────────────────────────────────────────────────────────────
+# ── 3. k9s (tap formula) ──────────────────────────────────────────────────────
+info "Installing/upgrading k9s..."
+if brew list derailed/k9s/k9s &>/dev/null; then
+  brew upgrade derailed/k9s/k9s 2>/dev/null || true
+else
+  brew install derailed/k9s/k9s
+fi
+
+# ── 5. Casks ──────────────────────────────────────────────────────────────────
 info "Installing casks..."
 BREW_CASKS=(
   font-jetbrains-mono-nerd-font
@@ -61,7 +70,7 @@ for cask in "${BREW_CASKS[@]}"; do
   fi
 done
 
-# ── 4. zinit ──────────────────────────────────────────────────────────────────
+# ── 6. zinit ──────────────────────────────────────────────────────────────────
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
   info "Installing zinit..."
@@ -72,7 +81,7 @@ else
   git -C "$ZINIT_HOME" pull --quiet
 fi
 
-# ── 5. nvm ────────────────────────────────────────────────────────────────────
+# ── 7. nvm ────────────────────────────────────────────────────────────────────
 NVM_DIR="$HOME/.nvm"
 if [ ! -d "$NVM_DIR" ]; then
   info "Installing nvm..."
@@ -86,7 +95,7 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# ── 6. Node LTS + Claude Code ─────────────────────────────────────────────────
+# ── 8. Node LTS + Claude Code ─────────────────────────────────────────────────
 info "Installing Node.js LTS..."
 nvm install --lts --no-progress
 nvm use --lts
@@ -94,7 +103,7 @@ nvm use --lts
 info "Installing/upgrading Claude Code..."
 npm install -g @anthropic-ai/claude-code
 
-# ── 7. TPM (tmux plugin manager) ──────────────────────────────────────────────
+# ── 9. TPM (tmux plugin manager) ──────────────────────────────────────────────
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins/"
 mkdir -p "$TMUX_PLUGIN_MANAGER_PATH"
 
@@ -108,7 +117,7 @@ else
 fi
 
 
-# ── 8. Symlinks ───────────────────────────────────────────────────────────────
+# ── 10. Symlinks ──────────────────────────────────────────────────────────────
 info "Creating symlinks..."
 
 symlink() {
@@ -142,7 +151,7 @@ symlink "$DOTFILES/.config/ghostty/config"          "$HOME/.config/ghostty/confi
 symlink "$DOTFILES/.config/ghostty/shaders"        "$HOME/.config/ghostty/shaders"
 symlink "$DOTFILES/.config/starship.toml"          "$HOME/.config/starship.toml"
 
-# ── 9. macOS keyboard shortcuts ───────────────────────────────────────────────
+# ── 11. macOS keyboard shortcuts ─────────────────────────────────────────────
 info "Restoring macOS keyboard shortcuts..."
 cp "$DOTFILES/macos/com.apple.symbolichotkeys.plist" \
    "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
