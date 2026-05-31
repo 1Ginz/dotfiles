@@ -72,6 +72,7 @@ alias ls="eza --icons=always --color=always --group-directories-first -a"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd z zsh)"
+eval "$(starship init zsh)"
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"

@@ -1,0 +1,39 @@
+# Starship prompt config
+# Docs: https://starship.rs/config/
+
+add_newline = true
+
+[character]
+success_symbol = "[❯](magenta)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[directory]
+style = "blue"
+truncation_length = 5
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+style = "fg:grey"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "fg:cyan"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+modified = "*"
+
+[cmd_duration]
+min_time = 5000
+format = "[$duration](yellow) "
+
+[golang]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[python]
+symbol = " "

@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -e
 
-DOTFILES="$HOME/dotfiles"
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -32,6 +32,7 @@ BREW_PACKAGES=(
   kubectl
   kubectx
   go
+  starship
 )
 
 for pkg in "${BREW_PACKAGES[@]}"; do
@@ -42,13 +43,20 @@ for pkg in "${BREW_PACKAGES[@]}"; do
   fi
 done
 
-# ── 3. JetBrains Mono Nerd Font ───────────────────────────────────────────────
-info "Installing JetBrains Mono Nerd Font..."
-if brew list --cask font-jetbrains-mono-nerd-font &>/dev/null; then
-  brew upgrade --cask font-jetbrains-mono-nerd-font 2>/dev/null || true
-else
-  brew install --cask font-jetbrains-mono-nerd-font
-fi
+# ── 3. Casks ──────────────────────────────────────────────────────────────────
+info "Installing casks..."
+BREW_CASKS=(
+  font-jetbrains-mono-nerd-font
+  ghostty
+)
+
+for cask in "${BREW_CASKS[@]}"; do
+  if brew list --cask "$cask" &>/dev/null; then
+    brew upgrade --cask "$cask" 2>/dev/null || true
+  else
+    brew install --cask "$cask"
+  fi
+done
 
 # ── 4. zinit ──────────────────────────────────────────────────────────────────
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
@@ -124,6 +132,8 @@ symlink "$DOTFILES/.config/tmux/tmux.conf"       "$HOME/.config/tmux/tmux.conf"
 symlink "$DOTFILES/.config/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
 symlink "$DOTFILES/.claude/skills"               "$HOME/.claude/skills"
 symlink "$DOTFILES/.ssh/config"                  "$HOME/.ssh/config"
+symlink "$DOTFILES/.config/ghostty/config"       "$HOME/.config/ghostty/config"
+symlink "$DOTFILES/.config/starship.toml"        "$HOME/.config/starship.toml"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo ""
