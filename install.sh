@@ -134,8 +134,9 @@ symlink "$DOTFILES/.config/tmux/tmux.conf"       "$HOME/.config/tmux/tmux.conf"
 symlink "$DOTFILES/.config/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
 symlink "$DOTFILES/.claude/skills"               "$HOME/.claude/skills"
 symlink "$DOTFILES/.ssh/config"                  "$HOME/.ssh/config"
-symlink "$DOTFILES/.config/ghostty/config"       "$HOME/.config/ghostty/config"
-symlink "$DOTFILES/.config/starship.toml"        "$HOME/.config/starship.toml"
+symlink "$DOTFILES/.config/ghostty/config"          "$HOME/.config/ghostty/config"
+symlink "$DOTFILES/.config/ghostty/shaders"        "$HOME/.config/ghostty/shaders"
+symlink "$DOTFILES/.config/starship.toml"          "$HOME/.config/starship.toml"
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo ""
