@@ -53,6 +53,8 @@ BREW_CASKS=(
 for cask in "${BREW_CASKS[@]}"; do
   if brew list --cask "$cask" &>/dev/null; then
     brew upgrade --cask "$cask" 2>/dev/null || true
+  elif [[ "$cask" == "ghostty" && -d "/Applications/Ghostty.app" ]]; then
+    info "Ghostty already installed, skipping"
   else
     brew install --cask "$cask"
   fi
