@@ -35,6 +35,7 @@ BREW_PACKAGES=(
   go
   starship
   rust
+  htop
 )
 
 for pkg in "${BREW_PACKAGES[@]}"; do
