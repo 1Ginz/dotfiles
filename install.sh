@@ -59,6 +59,7 @@ info "Installing casks..."
 BREW_CASKS=(
   font-jetbrains-mono-nerd-font
   ghostty
+  hammerspoon
 )
 
 for cask in "${BREW_CASKS[@]}"; do
@@ -151,6 +152,7 @@ symlink "$DOTFILES/.ssh/config"                  "$HOME/.ssh/config"
 symlink "$DOTFILES/.config/ghostty/config"          "$HOME/.config/ghostty/config"
 symlink "$DOTFILES/.config/ghostty/shaders"        "$HOME/.config/ghostty/shaders"
 symlink "$DOTFILES/.config/starship.toml"          "$HOME/.config/starship.toml"
+symlink "$DOTFILES/.config/hammerspoon/init.lua"   "$HOME/.hammerspoon/init.lua"
 
 # ── 11. macOS keyboard shortcuts ─────────────────────────────────────────────
 info "Restoring macOS keyboard shortcuts..."
