@@ -138,6 +138,13 @@ symlink "$DOTFILES/.config/ghostty/config"          "$HOME/.config/ghostty/confi
 symlink "$DOTFILES/.config/ghostty/shaders"        "$HOME/.config/ghostty/shaders"
 symlink "$DOTFILES/.config/starship.toml"          "$HOME/.config/starship.toml"
 
+# ── 9. macOS keyboard shortcuts ───────────────────────────────────────────────
+info "Restoring macOS keyboard shortcuts..."
+cp "$DOTFILES/macos/com.apple.symbolichotkeys.plist" \
+   "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+info "Keyboard shortcuts applied (log out and back in if shortcuts don't take effect)"
+
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo ""
 info "Done! Next steps:"
@@ -146,3 +153,4 @@ echo "  2. Create ~/.zshrc.secrets with your API tokens:"
 echo "     export ATLASSIAN_AUTH=..."
 echo "     export JIRA_API_TOKEN=..."
 echo "  3. Start tmux and press prefix + I to install tmux plugins"
+echo "  4. Log out and back in to fully apply keyboard shortcuts"
