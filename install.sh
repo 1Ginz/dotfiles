@@ -153,6 +153,8 @@ symlink "$DOTFILES/.config/ghostty/config"          "$HOME/.config/ghostty/confi
 symlink "$DOTFILES/.config/ghostty/shaders"        "$HOME/.config/ghostty/shaders"
 symlink "$DOTFILES/.config/starship.toml"          "$HOME/.config/starship.toml"
 symlink "$DOTFILES/.config/hammerspoon/init.lua"   "$HOME/.hammerspoon/init.lua"
+symlink "$DOTFILES/.claude/hooks/statusline.sh"    "$HOME/.claude/hooks/statusline.sh"
+symlink "$DOTFILES/.claude/settings.json"          "$HOME/.claude/settings.json"
 
 # ── 11. macOS keyboard shortcuts ─────────────────────────────────────────────
 info "Restoring macOS keyboard shortcuts..."

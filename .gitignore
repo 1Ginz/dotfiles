@@ -4,5 +4,3 @@
 # SSH — only track config, never keys
 .ssh/*
 !.ssh/config
-
-.claude/

@@ -1,0 +1,19 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "$HOME/.claude/hooks/statusline.sh",
+    "padding": 0
+  },
+  "extraKnownMarketplaces": {
+    "mina": {
+      "source": {
+        "source": "github",
+        "repo": "astronaut1712/astronaut-ai"
+      }
+    }
+  },
+  "theme": "dark",
+  "enabledPlugins": {
+    "mina@mina": true
+  }
+}

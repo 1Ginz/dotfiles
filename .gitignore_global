@@ -1,4 +1,6 @@
-.claude/
+.claude/*
+!.claude/hooks/
+!.claude/settings.json
 openspec/
 .code-review-graph/
 .mina/
