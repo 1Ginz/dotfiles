@@ -4,6 +4,9 @@
     "command": "$HOME/.claude/hooks/statusline.sh",
     "padding": 0
   },
+  "enabledPlugins": {
+    "mina@mina": true
+  },
   "extraKnownMarketplaces": {
     "mina": {
       "source": {
@@ -13,7 +16,5 @@
     }
   },
   "theme": "dark",
-  "enabledPlugins": {
-    "mina@mina": true
-  }
+  "skipWorkflowUsageWarning": true
 }
