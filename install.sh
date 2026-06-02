@@ -36,6 +36,7 @@ BREW_PACKAGES=(
   starship
   rust
   htop
+  pipx
 )
 
 for pkg in "${BREW_PACKAGES[@]}"; do
@@ -105,7 +106,18 @@ nvm use --lts
 info "Installing/upgrading Claude Code..."
 npm install -g @anthropic-ai/claude-code
 
-# ── 9. TPM (tmux plugin manager) ──────────────────────────────────────────────
+# ── 9. pipx packages ─────────────────────────────────────────────────────────
+info "Installing pipx packages..."
+pipx ensurepath --quiet 2>/dev/null || true
+
+if pipx list 2>/dev/null | grep -q "code-review-graph"; then
+  pipx upgrade code-review-graph 2>/dev/null || true
+else
+  pipx install code-review-graph
+fi
+pipx inject code-review-graph igraph 2>/dev/null || true
+
+# ── 10. TPM (tmux plugin manager) ─────────────────────────────────────────────
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins/"
 mkdir -p "$TMUX_PLUGIN_MANAGER_PATH"
 
