@@ -117,6 +117,10 @@ else
 fi
 pipx inject code-review-graph igraph 2>/dev/null || true
 
+info "Setting up code-review-graph..."
+(cd "$HOME" && code-review-graph install)
+code-review-graph daemon start 2>/dev/null || code-review-graph daemon restart 2>/dev/null || true
+
 # ── 10. TPM (tmux plugin manager) ─────────────────────────────────────────────
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.config/tmux/plugins/"
 mkdir -p "$TMUX_PLUGIN_MANAGER_PATH"
