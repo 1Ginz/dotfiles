@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+
 set -e
 
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
@@ -25,6 +25,7 @@ fi
 info "Installing/upgrading brew packages..."
 BREW_PACKAGES=(
   git
+  rtk
   fzf
   zoxide
   eza

@@ -87,3 +87,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Load secrets — never committed to git
 [[ -f "$HOME/.zshrc.secrets" ]] && source "$HOME/.zshrc.secrets"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
