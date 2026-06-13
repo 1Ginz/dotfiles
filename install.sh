@@ -173,21 +173,29 @@ symlink "$DOTFILES/.config/hammerspoon/init.lua"   "$HOME/.hammerspoon/init.lua"
 symlink "$DOTFILES/.claude/hooks/statusline.sh"    "$HOME/.claude/hooks/statusline.sh"
 symlink "$DOTFILES/.claude/settings.json"          "$HOME/.claude/settings.json"
 
-# ── 11. macOS keyboard shortcuts ─────────────────────────────────────────────
-info "Restoring macOS keyboard shortcuts..."
-cp "$DOTFILES/macos/com.apple.symbolichotkeys.plist" \
-   "$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
-/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-info "Keyboard shortcuts applied (log out and back in if shortcuts don't take effect)"
+
+# ── 12. Launch apps that need Accessibility permission ────────────────────────
+info "Launching Hammerspoon..."
+if pgrep -x Hammerspoon &>/dev/null; then
+  info "Hammerspoon already running, reloading config..."
+  osascript -e 'tell application "Hammerspoon" to reload config' 2>/dev/null || true
+else
+  open /Applications/Hammerspoon.app
+  info "Hammerspoon launched — grant Accessibility permission when prompted"
+fi
 
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo ""
 info "Done! Next steps:"
-echo "  1. Open a new terminal to apply .zshrc"
-echo "  2. Create ~/.zshrc.secrets with your API tokens:"
+echo "  1. Create ~/.zshrc.secrets with your API tokens (if not already done)"
 echo "     export ATLASSIAN_AUTH=..."
 echo "     export JIRA_API_TOKEN=..."
+echo "  2. Grant Accessibility permission to Hammerspoon:"
+echo "     System Settings → Privacy & Security → Accessibility → enable Hammerspoon"
 echo "  3. Start tmux and press prefix + I (Ctrl+A then I) to install plugins"
 echo "  4. After plugins install, build tmux-thumbs binary:"
 echo "     cargo build --release --manifest-path ~/.config/tmux/plugins/tmux-thumbs/Cargo.toml"
-echo "  4. Log out and back in to fully apply keyboard shortcuts"
+echo "  5. Log out and back in if any system changes didn't take effect"
+echo ""
+info "Reloading shell config..."
+exec zsh -l
